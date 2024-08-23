@@ -1,0 +1,12 @@
+<svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<defs><clipPath id="c1"><rect id="r1" width="14" height="14" transform="translate(27 12) rotate(90)" fill="white" fill-opacity="0"/></clipPath></defs>
+	<line x1="12" y1="16" x2="12" y2="21" stroke="#444444" stroke-opacity="1" stroke-width="1.2"/>
+	<line x1="12" y1="0" x2="12" y2="4" stroke="#444444" stroke-opacity="1" stroke-width="1"/>
+	<line x1="0" y1="10" x2="4" y2="10" stroke="#444444" stroke-opacity="1" stroke-width="1.2"/>
+	<line x1="6.828430" y1="14" x2="4" y2="16.828430" stroke="#444444" stroke-opacity="1" stroke-width="1.2"/>
+	<line x1="4" y1="3" x2="6.828430" y2="5.828430" stroke="#444444" stroke-opacity="1" stroke-width="1"/>
+	<line x1="17" y1="5.535530" x2="19.121323" y2="3.414215" stroke="#444444" stroke-opacity="1" stroke-width="0.8"/>
+	<path d="M11.34 14.45L10.55 14.45L12.55 6.55L13.32 6.55L11.34 14.45ZM10.14 11.01L10.14 11.99L6.04 10.4L6.04 9.56L10.14 7.98L10.14 8.96L8.46 9.53L7.23 9.96L7.23 10L8.46 10.43L10.14 11.01ZM17.96 10.4L13.85 11.99L13.85 11.01L15.54 10.43L16.76 10L16.76 9.96L15.54 9.53L13.85 8.96L13.85 7.98L17.96 9.56L17.96 10.4Z" fill="#1296FF" fill-opacity="1" fill-rule="evenodd"/>
+	<g clip-path="url(#c1)"><path id="path" d="M14.24 13.24L26.14 18.29L20.35 19.34L19.29 25.13L14.24 13.24Z" fill="#FFA748" fill-opacity="1" fill-rule="nonzero"/></g>
+	<line x1="20" y1="10" x2="23" y2="10" stroke="#444444" stroke-opacity="1" stroke-width="0.8"/>
+</svg>
