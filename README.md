@@ -5,7 +5,7 @@
 </p>
 <h1 align="center">Lingerer Map Project</h1>
 
-Website: [Lingerer](https://lingerer.cn)
+Website: [Lingerer](https://www.lingerer.cn)
 
 > `Lingerer Map` is an open-source and free GIS application template designed to provide a fast, scalable, and professional development experience for most GIS developers.
 
@@ -29,3 +29,4 @@ Currently, this project uses the following frameworks:
 
 ## Issues
 We welcome any feedback or suggestions, please leave us a message via Issues.
+Talks: [Lingerer Product](https://support.qq.com/product/667538)
