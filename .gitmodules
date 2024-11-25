@@ -1,0 +1,3 @@
+[submodule "packages/map-core"]
+	path = packages/map-core
+	url = git@lingr.github.com:lingr-dev/lingr-map-core.git
