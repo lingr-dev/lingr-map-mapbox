@@ -1,0 +1,97 @@
+// interactive
+$interactive-01: #705df2;
+$interactive-02: #ff5b86;
+$interactive-03: #ffa257;
+//$interactive-04: #;
+
+// ui
+$ui-01: #705df2;
+$ui-02: #5c43f5;
+$ui-03: #ffffff;
+$ui-04: #222222;
+$ui-05: #202020;
+$ui-gradient-01: radial-gradient(
+                100% 100% at 100% 15%,
+                #ff6651 0%,
+                #271945 100%
+);
+$ui-gradient-02: radial-gradient(
+                100% 100% at 100% 15%,
+                #63bff2 0%,
+                #271945 100%
+);
+$ui-gradient-03: radial-gradient(
+                100% 100% at 100% 15%,
+                #ffb905 0%,
+                #271945 100%
+);
+$ui-gradient-04: radial-gradient(
+                100% 100% at 100% 15%,
+                #705df2 0%,
+                #271945 100%
+);
+$ui-gradient-05: radial-gradient(
+                100% 100% at 100% 15%,
+                #adbbd0 0%,
+                #271945 100%
+);
+$ui-gradient-06: radial-gradient(
+                100% 100% at 100% 15%,
+                #78d24e 0%,
+                #271945 100%
+);
+$ui-gradient-07: radial-gradient(
+                100% 100% at 100% 15%,
+                #00fff0 0%,
+                #271945 100%
+);
+$ui-background: #140b29;
+
+// text
+$text-01: #ffffff;
+$text-02: #ffffffb3;
+$text-03: #62c7ff;
+$text-04: #fbb606;
+$text-05: #8784ff;
+$text-06: #85a4b2;
+$text-07: #b9e76e;
+$text-08: #6ebbf3;
+$link-01: #04da8d;
+$inverse-01: #a39bce;
+//$inverse-02: #;
+$field-01: radial-gradient(
+                100% 100% at 100% 5%,
+                rgba(112, 93, 242, 0.2) 0%,
+                transparent 100%
+),
+#1c1134;
+$field-02: radial-gradient(closest-side, #213040, rgba(33, 48, 64, 0));
+$field-03: linear-gradient(226deg, rgba(112, 93, 242, .2) 0%, rgba(28, 17, 52, .2) 100%), #271945;
+
+$shadow-01: 0 0 50px #fff;
+$shadow-02: 0 0 74px #705df24d;
+
+// support
+$support-01: rgba(255, 255, 255, 0.2);
+$support-02: rgba(238, 238, 238, 0.2);
+$support-03: rgba(238, 238, 238, 0.133);
+//$support-04: #;
+//
+//$focus-01: #;
+//$hover-primary: #;
+//$hover-primary-text: #;
+//$hover-secondary: #;
+//$hover-tertiary: #;
+//$hover-ui: #;
+//$hover-selected-ui: #;
+//$hover-danger: #;
+//
+$active-primary: #705df2;
+//$active-secondary: #;
+//$active-tertiary: #;
+//$active-danger: #;
+//
+//$visited-link: #;
+//$disabled-01: #;
+//$disabled-02: #;
+//$disabled-03: #;

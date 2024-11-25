@@ -7,11 +7,22 @@
   },
   "files": {
     "ignoreUnknown": false,
+    "include": [
+      "apps/**/*.js",
+      "apps/**/*.ts",
+      "apps/**/*.vue",
+      "packages/**/*.js",
+      "packages/**/*.ts",
+      "**/*.json",
+      "apps/**/*.html",
+      "apps/**/*.css"
+    ],
     "ignore": []
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
+    "indentWidth": 2,
     "lineWidth": 120
   },
   "organizeImports": {
@@ -25,7 +36,6 @@
   },
   "javascript": {
     "formatter": {
-      "lineWidth": 120,
       "quoteStyle": "double",
       "trailingCommas": "all",
       "lineEnding": "crlf"

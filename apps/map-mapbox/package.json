@@ -1,5 +1,5 @@
 {
-  "name": "map-mapbox",
+  "name": "@lingr/map-mapbox",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,10 +9,40 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.12"
+    "@lingr/map-core": "workspace:^",
+    "@iconify/json": "2.2.275",
+    "@iconify/vue": "4.1.2",
+    "@vueuse/core": "catalog:",
+    "axios": "1.7.7",
+    "events": "^3.3.0",
+    "lodash-es": "catalog:",
+    "mapbox-gl": "3.8.0",
+    "pinia": "catalog:",
+    "qs": "6.13.1",
+    "vue": "catalog:",
+    "vue-router": "catalog:",
+    "vuetify": "3.7.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.4",
-    "vite": "^5.4.10"
+    "@eslint/js": "^9.10.0",
+    "@rushstack/eslint-patch": "^1.8.0",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "eslint": "^9.12.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "globals": "^15.9.0",
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.10",
+    "postcss": "^8.4.47",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "sass": "catalog:",
+    "sass-loader": "catalog:",
+    "unplugin-auto-import": "^0.18.2",
+    "unplugin-icons": "^0.19.2",
+    "unplugin-vue-components": "^0.27.4",
+    "vite": "catalog:",
+    "vite-plugin-external": "catalog:",
+    "vite-plugin-html": "catalog:",
+    "vite-plugin-vuetify": "catalog:"
   }
 }
