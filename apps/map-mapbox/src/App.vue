@@ -1,10 +1,10 @@
 <script setup>
-import { useWebWorkspace } from "@/hooks/useWebWorkspace.js";
+import { useMapInit } from "@/hooks/map/useMapInit.js";
 
 const route = useRoute();
 const router = useRouter();
 
-const { workspaceDomain } = useWebWorkspace();
+useMapInit();
 
 window.addEventListener("visibilitychange", () => {
   return Promise.resolve();
