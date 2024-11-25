@@ -1,7 +1,7 @@
 > Lingerer Map
 
 <p align="center">
-    <img src="https://github.com/lingr-dev/lingr-map-mapbox/blob/main/img/logo.svg" alt="Lingerer CN" />
+    <img src="https://img-xs.lingerer.cn/lingerer/logo.svg" alt="Lingerer CN" />
 </p>
 <h1 align="center">Lingerer Map Project</h1>
 
