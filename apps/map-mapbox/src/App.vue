@@ -1,12 +1,12 @@
 <script setup>
-import { useMapInit } from "@/hooks/map/useMapInit.js";
+import { useMapInit } from '@/hooks/map/useMapInit.js';
 
-const route = useRoute();
-const router = useRouter();
+// const route = useRoute();
+// const router = useRouter();
 
 useMapInit();
 
-window.addEventListener("visibilitychange", () => {
+window.addEventListener('visibilitychange', () => {
   return Promise.resolve();
 });
 </script>

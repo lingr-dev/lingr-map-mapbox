@@ -12,6 +12,7 @@
   },
   "scripts": {
     "bootstrap": "pnpm install",
+    "commit": "commit",
     "dev:mapbox": "pnpm --filter @lingr/map-mapbox run dev",
     "dev:test": "pnpm --filter @lingr/map-mapbox run dev",
     "build:mapbox": "pnpm --filter @lingr/map-mapbox run build",
@@ -19,7 +20,7 @@
     "build:core": "pnpm --filter @lingr/map-core run build",
     "build": "pnpm -r --stream build",
     "build:watch": "pnpm -r --parallel build:watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint-staged": "lint-staged",
     "prepare": "husky"
   },
   "keywords": [
@@ -36,18 +37,44 @@
     "url": "https://github.com/lingr-dev/lingr-map-mapbox/issues"
   },
   "license": "MIT",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.vue": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.css": [
+      "styleline --fix"
+    ],
+    "*.md": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@changesets/cli": "^2.27.10",
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
     "@commitlint/prompt-cli": "^19.6.0",
+    "@eslint/config-inspector": "^0.6.0",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.13.0",
     "@types/node": "^22.7.7",
+    "@vue/eslint-config-prettier": "^10.1.0",
     "conventional-changelog-cli": "^5.0.0",
     "eslint": "^9.12.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vue": "^9.32.0",
+    "globals": "^15.14.0",
     "husky": "^9.1.5",
+    "lint-staged": "^15.3.0",
+    "prettier": "^3.4.2",
     "rimraf": "^6.0.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vue-eslint-parser": "^9.4.3"
   },
   "packageManager": "pnpm@9.12.0"
 }
