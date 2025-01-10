@@ -1,24 +1,24 @@
-import { defineConfig, loadEnv } from "vite";
-import vue from "@vitejs/plugin-vue";
-import AutoImport from "unplugin-auto-import/vite";
-import Icons from "unplugin-icons/vite";
-import IconResolver from "unplugin-icons/resolver";
-import Components from "unplugin-vue-components/vite";
-import { createHtmlPlugin } from "vite-plugin-html";
-import createExternal from "vite-plugin-external";
-import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+import { defineConfig, loadEnv } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import AutoImport from 'unplugin-auto-import/vite';
+import Icons from 'unplugin-icons/vite';
+import IconResolver from 'unplugin-icons/resolver';
+import Components from 'unplugin-vue-components/vite';
+import { createHtmlPlugin } from 'vite-plugin-html';
+import createExternal from 'vite-plugin-external';
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 // import { visualizer } from 'rollup-plugin-visualizer'
-import path from "node:path";
+import path from 'node:path';
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
+  const env = loadEnv(mode, process.cwd(), '');
 
   return {
-    base: env.DEV ? "./" : "/map/",
+    base: env.DEV ? './' : '/map/',
 
     build: {
-      target: "esnext",
+      target: 'esnext',
     },
 
     plugins: [
@@ -27,62 +27,67 @@ export default defineConfig(({ mode }) => {
       }),
       vuetify({
         autoImport: true,
-        styles: "expose",
+        styles: 'expose',
       }),
       Components({
-        resolvers: [IconResolver({ componentPrefix: "i" })],
-        dts: "types/components.d.ts",
+        resolvers: [IconResolver({ componentPrefix: 'i' })],
+        dts: 'types/components.d.ts',
       }),
       AutoImport({
-        imports: ["vue", "vue-router", "@vueuse/core", "pinia"],
-        dts: "types/auto-import.d.ts",
+        include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
+        imports: ['vue', 'vue-router', '@vueuse/core', 'pinia'],
+        eslintrc: {
+          enabled: true,
+          filepath: './.eslintrc-auto-import.json',
+        },
+        dts: 'types/auto-import.d.ts',
       }),
       Icons({
-        compiler: "vue3",
+        compiler: 'vue3',
       }),
       createHtmlPlugin({
-        template: "./index.html",
+        template: './index.html',
         inject: {
           tags: [
             {
-              injectTo: "head",
-              tag: "link",
+              injectTo: 'head',
+              tag: 'link',
               attrs: {
-                rel: "stylesheet",
-                href: "https://unpkg.com/mapbox-gl@3.8.0/dist/mapbox-gl.css",
+                rel: 'stylesheet',
+                href: 'https://unpkg.com/mapbox-gl@3.8.0/dist/mapbox-gl.css',
               },
             },
             {
-              injectTo: "head",
-              tag: "script",
+              injectTo: 'head',
+              tag: 'script',
               attrs: {
-                src: "https://unpkg.com/vue@3.5.13/dist/vue.global.prod.js",
+                src: 'https://unpkg.com/vue@3.5.13/dist/vue.global.prod.js',
               },
             },
             {
-              injectTo: "head",
-              tag: "script",
+              injectTo: 'head',
+              tag: 'script',
               attrs: {
-                src: "https://unpkg.com/vue-router@4.4.3/dist/vue-router.global.js",
+                src: 'https://unpkg.com/vue-router@4.4.3/dist/vue-router.global.js',
               },
             },
             {
-              injectTo: "head",
-              tag: "script",
+              injectTo: 'head',
+              tag: 'script',
               attrs: {
-                src: "https://unpkg.com/mapbox-gl@3.8.0/dist/mapbox-gl.js",
+                src: 'https://unpkg.com/mapbox-gl@3.8.0/dist/mapbox-gl.js',
               },
             },
           ],
         },
       }),
-      mode === "production" &&
+      mode === 'production' &&
         createExternal({
-          interop: "auto",
+          interop: 'auto',
           externals: {
-            vue: "Vue",
-            "vue-router": "VueRouter",
-            "mapbox-gl": "mapboxgl",
+            vue: 'Vue',
+            'vue-router': 'VueRouter',
+            'mapbox-gl': 'mapboxgl',
           },
         }),
       // visualizer({
@@ -94,13 +99,14 @@ export default defineConfig(({ mode }) => {
 
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, "./src"),
+        '@': path.resolve(__dirname, './src'),
       },
     },
 
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'modern-compiler',
           additionalData: '@import "@/assets/style/mixin.scss";',
         },
       },

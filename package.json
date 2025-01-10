@@ -7,6 +7,7 @@
   },
   "version": "1.0.0",
   "description": "A Lingerer map application, using Mapbox GL.",
+  "type": "module",
   "engines": {
     "node": "^18.19.0 || >=20.0.0"
   },
@@ -20,6 +21,7 @@
     "build:core": "pnpm --filter @lingr/map-core run build",
     "build": "pnpm -r --stream build",
     "build:watch": "pnpm -r --parallel build:watch",
+    "eslint-inspector": "npx @eslint/config-inspector@latest",
     "lint-staged": "lint-staged",
     "prepare": "husky"
   },

@@ -1,20 +1,20 @@
+import fs from 'node:fs';
+import process from 'node:process';
 import globals from 'globals';
-import { FlatCompat } from '@eslint/eslintrc';
 
 import js from '@eslint/js';
 
+import pluginVue from 'eslint-plugin-vue';
 import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
 // parsers
 import vueParser from 'vue-eslint-parser';
 
-const compat = new FlatCompat({
-  recommendedConfig: js.configs.recommended,
-});
+const autoImportRc = JSON.parse(fs.readFileSync('./apps/map-mapbox/.eslintrc-auto-import.json'));
 
 export default [
   js.configs.recommended,
-  ...compat.extends('plugin:vue/vue3-recommended'),
+  ...pluginVue.configs['flat/recommended'],
   {
     languageOptions: {
       parser: vueParser,
@@ -27,6 +27,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...autoImportRc.globals,
       },
     },
     rules: {

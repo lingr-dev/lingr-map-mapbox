@@ -1,6 +1,6 @@
-import { LAYOUT_DEFAULT } from "@/constants/application.js";
+import { LAYOUT_DEFAULT } from '@/constants/application.js';
 
-const usePageLayout = defineStore("pageLayout", {
+const usePageLayout = defineStore('pageLayout', {
   state() {
     return {
       layout: LAYOUT_DEFAULT,
