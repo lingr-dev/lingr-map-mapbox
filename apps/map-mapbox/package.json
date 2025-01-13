@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@lingr/map-core": "workspace:^",
     "@iconify/json": "2.2.275",
     "@iconify/vue": "4.1.2",
+    "@lingr/map-core": "workspace:^",
     "@vueuse/core": "catalog:",
     "axios": "1.7.7",
     "events": "^3.3.0",
@@ -24,15 +24,7 @@
     "vuetify": "3.7.4"
   },
   "devDependencies": {
-    "@eslint/js": "^9.10.0",
-    "@rushstack/eslint-patch": "^1.8.0",
     "@vitejs/plugin-vue": "catalog:",
-    "@vue/eslint-config-prettier": "^9.0.0",
-    "eslint": "^9.12.0",
-    "eslint-plugin-vue": "^9.23.0",
-    "globals": "^15.9.0",
-    "husky": "^9.1.5",
-    "lint-staged": "^15.2.10",
     "postcss": "^8.4.47",
     "rollup-plugin-visualizer": "^5.12.0",
     "sass": "catalog:",
