@@ -3,7 +3,14 @@
     "compilerOptions": {
         "outDir": "dist"
     },
-    "include": ["**/*.ts", "**/*.vue"],
+    "include": [
+        "src/**/*.ts",
+        "**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "types",
+        "types/*.ts"
+    ],
     "exclude": ["dist/**"],
     "references": [{
         "path": "../../packages/map-core/tsconfig.json"

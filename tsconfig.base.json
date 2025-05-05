@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+
     "allowJs": true,
-    "strict": true,
-    "strictNullChecks": true,
+
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noUnusedLocals": true,
+
     "skipLibCheck": true,
     "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
     "jsx": "react-jsx",
-    "moduleResolution": "node"
+
+    "paths": {
+      "@": ["src"],
+      "@/*": ["./src/*"]
+    }
   }
 }

@@ -26,9 +26,11 @@
     "prepare": "husky"
   },
   "keywords": [
+    "javascript",
     "map",
     "gis",
-    "mapbox"
+    "mapbox",
+    "data-driven"
   ],
   "repository": {
     "type": "github",

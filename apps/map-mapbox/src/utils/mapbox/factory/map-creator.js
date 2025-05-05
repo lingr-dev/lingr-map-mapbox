@@ -1,10 +1,6 @@
-import MapboxGL from "mapbox-gl";
-import {
-  MAPBOX_STYLE_SPEC_VER,
-  MAPBOX_STYLE_GLYPHS,
-} from "@/constants/basemaps.js";
-import { configMapboxGL } from "../init.js";
-import { createBasemapSources } from "./base-creator.js";
+import MapboxGL from 'mapbox-gl';
+import { MAPBOX_STYLE_SPEC_VER, MAPBOX_STYLE_GLYPHS } from '@/constants/basemaps.js';
+import { createBasemapSources } from './base-creator.js';
 
 function buildStyleObject() {
   const basemapSources = createBasemapSources();
@@ -22,7 +18,7 @@ function createMapControls(map) {
   const nav = new MapboxGL.NavigationControl();
 
   const fullscreen = new MapboxGL.FullscreenControl({
-    container: document.querySelector("body"),
+    container: document.querySelector('body'),
   });
 
   const scalebar = new MapboxGL.ScaleControl();
@@ -34,8 +30,6 @@ function createMapControls(map) {
 
 export default {
   createMap(container) {
-    configMapboxGL();
-
     const map = new MapboxGL.Map({
       container,
       style: buildStyleObject(),

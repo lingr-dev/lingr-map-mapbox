@@ -1,0 +1,40 @@
+{
+  "name": "@lingr/core",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist/*",
+    "index.d.ts",
+    "core.d.ts"
+  ],
+  "module": "./dist/core.js",
+  "main": "./dist/core.umd.cjs",
+  "exports": {
+    ".": {
+      "import": "./dist/core.js",
+      "require": "./dist/core.umd.cjs",
+      "type": "./dist/core.d.ts"
+    }
+  },
+  "types": "./index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && pnpm run dts",
+    "preview": "vite preview",
+    "checker": "tsc --noEmit --watch",
+    "dts": "tsc --declaration --emitDeclarationOnly --declarationDir dist/"
+  },
+  "dependencies": {
+    "debug": "4.3.7",
+    "events": "^3.3.0",
+    "lodash-es": "catalog:",
+    "nanoid": "^5.0.7"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/lodash-es": "^4.17.12",
+    "vite": "catalog:",
+    "vite-plugin-dts": "^4.5.3"
+  }
+}

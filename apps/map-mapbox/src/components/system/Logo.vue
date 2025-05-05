@@ -1,9 +1,9 @@
 <template>
   <div class="page-logo">
     <a alt="Lingerer" href="https://www.lingerer.cn">
-      <img alt="Lingerer" src="https://img-xs.lingerer.cn/lingerer/logo.svg" height="40" width="40"/>
+      <img alt="Lingerer" src="https://img-xs.lingerer.cn/lingerer/logo.svg" height="40" width="40" />
     </a>
-    <span class="page-logo__title">灵图 | Lingr Map</span>
+    <span class="page-logo__title">Lingr Map</span>
   </div>
 </template>
 
