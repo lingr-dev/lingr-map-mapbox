@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { equals as arrayEquals } from './array.js';
 
 type PlainObject = { [key: string]: any };
@@ -12,7 +10,7 @@ type PlainObject = { [key: string]: any };
  */
 function fixJson(obj: PlainObject, deep: boolean = false): PlainObject {
   for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
+    if (Object.hasOwn(obj, key)) {
       if (obj[key] === undefined) {
         delete obj[key];
       } else if (deep && typeof obj[key] === 'object' && obj[key] !== null) {
@@ -207,7 +205,7 @@ function objectsAreEqual(a: PlainObject, b: PlainObject): boolean {
   const keysA = Object.keys(a);
   if (Object.keys(b).length !== keysA.length) return false;
   for (const key of keysA) {
-    if (a[key] !== b[key] || !b.hasOwnProperty(key)) return false;
+    if (a[key] !== b[key] || !Object.hasOwn(b, key)) return false;
   }
   return true;
 }
@@ -371,7 +369,7 @@ function mergeObjects(target: PlainObject | undefined, source: PlainObject, merg
       acc[key] = targetArray;
     } else if (sourceValue && typeof sourceValue === 'object') {
       acc[key] = mergeObjects(targetValue, sourceValue, mergeArrays);
-    } else if (acc.hasOwnProperty(key) && !source.hasOwnProperty(key)) {
+    } else if (Object.hasOwn(acc, key) && !Object.hasOwn(source, key)) {
       // 不处理
     } else {
       acc[key] = sourceValue;

@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 // 内存重新分配相关常量
 const REALLOC_GROWTH_FACTOR = 1.5;
 const REALLOC_SHRINK_FACTOR = 1 / REALLOC_GROWTH_FACTOR;

@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import process from 'node:process';
 import globals from 'globals';
-
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsparser from '@typescript-eslint/parser';
 import js from '@eslint/js';
 
 import pluginVue from 'eslint-plugin-vue';
@@ -37,6 +38,31 @@ export default [
       'vue/multi-word-component-names': 'off',
       'prettier/prettier': ['error', { endOfLine: 'auto' }],
       semi: 2,
+    },
+  },
+  {
+    files: ['**/*.ts'],
+
+    languageOptions: {
+      parser: tsparser,
+      sourceType: 'module',
+    },
+
+    plugins: {
+      '@typescript-eslint': tseslint,
+    },
+
+    ignores: ['.node_modules/*', 'vite-env.d.ts'],
+
+    rules: {
+      ...tseslint.configs.recommended.rules,
+      ...pluginPrettierRecommended.rules,
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'no-console': 'warn',
+      semi: ['error', 'always'],
+      quotes: ['error', 'double'],
+      'prettier/prettier': 'error',
     },
   },
   pluginPrettierRecommended,

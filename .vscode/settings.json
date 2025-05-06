@@ -1,0 +1,7 @@
+{
+  "biome.enabled": false,
+  "eslint.enable": true,
+  "eslint.run": "onType",
+  "eslint.useFlatConfig": true,
+  "eslint.debug": true
+}
