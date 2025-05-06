@@ -1,8 +1,9 @@
 /* eslint-disable */
 
-import { requestConfig } from '../config.js';
+import { config } from '../config.js';
 import { isSerializable } from './JSONSupport.js';
 
+const requestConfig = config.request;
 const trustedServersUrlCache = {};
 const regUrl = new RegExp('^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?$');
 const regAuth = new RegExp('^((([^[:]+):)?([^@]+)@)?(\\[([^\\]]+)\\]|([^[:]*))(:([0-9]+))?$');

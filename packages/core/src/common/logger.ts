@@ -59,10 +59,99 @@ const levels = {
 
 class NamespaceLogger {
   handlers: { [key: string]: any };
+  namespace: string;
+  instance: debug.Debugger;
 
-  constructor() {}
+  constructor(namespace: string) {
+    this.handlers = {};
+    this.namespace = namespace;
 
-  _log(level) {}
+    this.instance = debug(namespace);
+  }
+
+  get cfg() {
+    if (this.handlers['cfg']) {
+      return this.handlers['cfg'];
+    }
+
+    const handler = this.instance.extend(levels.cfg.suffix);
+    handler.log = console.log.bind(console);
+    handler.color = levels.cfg.color.rgb;
+
+    this.handlers['cfg'] = handler;
+
+    return this.handlers['cfg'];
+  }
+
+  get dbg() {
+    if (this.handlers['dbg']) {
+      return this.handlers['dbg'];
+    }
+
+    const handler = this.instance.extend(levels.dbg.suffix);
+    handler.log = console.log.bind(console);
+    handler.color = levels.dbg.color.rgb;
+
+    this.handlers['dbg'] = handler;
+
+    return this.handlers['dbg'];
+  }
+
+  get log() {
+    if (this.handlers['log']) {
+      return this.handlers['log'];
+    }
+
+    const handler = this.instance.extend(levels.log.suffix);
+    handler.log = console.log.bind(console);
+    handler.color = levels.log.color.rgb;
+
+    this.handlers['log'] = handler;
+
+    return this.handlers['log'];
+  }
+
+  get info() {
+    if (this.handlers['info']) {
+      return this.handlers['info'];
+    }
+
+    const handler = this.instance.extend(levels.info.suffix);
+    handler.log = console.log.bind(console);
+    handler.color = levels.info.color.rgb;
+
+    this.handlers['info'] = handler;
+
+    return this.handlers['info'];
+  }
+
+  get warn() {
+    if (this.handlers['warn']) {
+      return this.handlers['warn'];
+    }
+
+    const handler = this.instance.extend(levels.warn.suffix);
+    handler.log = console.log.bind(console);
+    handler.color = levels.warn.color.rgb;
+
+    this.handlers['warn'] = handler;
+
+    return this.handlers['warn'];
+  }
+
+  get error() {
+    if (this.handlers['error']) {
+      return this.handlers['error'];
+    }
+
+    const handler = this.instance.extend(levels.error.suffix);
+    handler.log = console.log.bind(console);
+    handler.color = levels.error.color.rgb;
+
+    this.handlers['error'] = handler;
+
+    return this.handlers['error'];
+  }
 }
 
 export const nsLogger = {
@@ -72,13 +161,9 @@ export const nsLogger = {
     debug.enable(namespaces);
   },
 
-  create(namespace: string): void {
-    _each(
-      _entries(levels, ([lvlName, lvlInfo]) => {
-        Object.defineProperty(this, lvlName, {
-          get() {},
-        });
-      })
-    );
+  create(namespace: string): NamespaceLogger {
+    const instance = new NamespaceLogger(namespace);
+
+    return instance;
   },
 };
