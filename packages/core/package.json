@@ -12,9 +12,9 @@
   "main": "./dist/core.umd.cjs",
   "exports": {
     ".": {
+      "type": "./dist/core.d.ts",
       "import": "./dist/core.js",
-      "require": "./dist/core.umd.cjs",
-      "type": "./dist/core.d.ts"
+      "require": "./dist/core.umd.cjs"
     }
   },
   "types": "./index.d.ts",

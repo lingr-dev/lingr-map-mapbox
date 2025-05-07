@@ -1,6 +1,8 @@
 // 内存重新分配相关常量
 const REALLOC_GROWTH_FACTOR = 1.5;
+/* eslint-disable-next-line */
 const REALLOC_SHRINK_FACTOR = 1 / REALLOC_GROWTH_FACTOR;
+/* eslint-disable-next-line */
 const REALLOC_SHRINK_THRESHOLD = 0.5;
 
 // 恒等函数
@@ -32,7 +34,7 @@ function addMany<T>(target: T[], items?: T[]): T[] {
 function equals<T>(
   array1: T[] | null | undefined,
   array2: T[] | null | undefined,
-  comparer?: (a: T, b: T) => boolean
+  comparer?: (_a: T, _b: T) => boolean
 ): boolean {
   if (array1 === null && array2 === null) return true;
   if (array1 === null || array2 === null || (array1 as T[]).length !== (array2 as T[]).length) return false;
@@ -50,4 +52,4 @@ function equals<T>(
 
 const emptyArray: any[] = [];
 
-export { emptyArray, equals };
+export { identity, addMany, emptyArray, equals };

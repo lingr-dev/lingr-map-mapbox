@@ -3,6 +3,7 @@
 import { config } from '../config.js';
 import { isSerializable } from './JSONSupport.js';
 import { AppError } from './AppError.js';
+import { arrayBufferToBase64, base64ToArrayBuffer } from './base64Utils.js';
 
 // 获取日志记录器
 // const getLogger = () => Logger.getLogger("esri.core.urlUtils");
@@ -18,6 +19,113 @@ const portRegex = /:\d+$/;
 const arcgisSharingRegex = /^https?:\/\/[^/]+\.arcgis.com\/sharing(\/|$)/i;
 const urlParseRegex = new RegExp('^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?$');
 const authorityParseRegex = new RegExp('^((([^[:]+):)?([^@]+)@)?(\\[([^\\]]+)\\]|([^[:]*))(:([0-9]+))?$');
+
+// Regular expression to match ArcGIS Online domains
+const arcGISOnlineDomainRegex = /^https:\/\/([a-z\d-]+)(\.maps([^.]*))?\.arcgis\.com/i;
+
+// Configuration for different ArcGIS Online environments
+const arcGISOnlineEnvironments = {
+  devext: {
+    customBaseUrl: 'mapsdevext.arcgis.com',
+    portalHostname: 'devext.arcgis.com',
+  },
+  qaext: {
+    customBaseUrl: 'mapsqa.arcgis.com',
+    portalHostname: 'qaext.arcgis.com',
+  },
+  www: {
+    customBaseUrl: 'maps.arcgis.com',
+    portalHostname: 'www.arcgis.com',
+  },
+};
+
+// Interface for the result of parsing an ArcGIS Online domain
+interface ParsedArcGISOnlineDomain {
+  customBaseUrl: string | null;
+  isPortal: boolean;
+  portalHostname: string | null;
+  urlKey: string | null;
+}
+
+/**
+ * Parse a known ArcGIS Online domain from a given URL.
+ * @param url - The URL to parse.
+ * @returns An object containing information about the parsed domain, or null if the URL does not match.
+ */
+function parseKnownArcGISOnlineDomain(url: string | undefined): ParsedArcGISOnlineDomain | null {
+  const match = url?.match(arcGISOnlineDomainRegex);
+  if (!match) return null;
+  const [, subdomain, mapsPart, envPart] = match;
+  if (!subdomain) return null;
+
+  let urlKey: string | null = null;
+  let customBaseUrl: string | null = null;
+  let portalHostname: string | null = null;
+
+  const { devext, qaext, www } = arcGISOnlineEnvironments;
+
+  if (mapsPart) {
+    if ((urlKey = subdomain) && envPart) {
+      switch (envPart.toLowerCase()) {
+        case 'devext':
+          ({ customBaseUrl, portalHostname } = devext);
+          break;
+        case 'qa':
+          ({ customBaseUrl, portalHostname } = qaext);
+          break;
+        default:
+          return null;
+      }
+    } else {
+      ({ customBaseUrl, portalHostname } = www);
+    }
+  } else {
+    switch (subdomain.toLowerCase()) {
+      case 'devext':
+        ({ customBaseUrl, portalHostname } = devext);
+        break;
+      case 'qaext':
+        ({ customBaseUrl, portalHostname } = qaext);
+        break;
+      case 'www':
+        ({ customBaseUrl, portalHostname } = www);
+        break;
+      default:
+        return null;
+    }
+  }
+
+  return { customBaseUrl, isPortal: false, portalHostname, urlKey };
+}
+
+/**
+ * Check if a URL is a secure proxy service.
+ * @param url - The URL to check.
+ * @returns True if the URL is a secure proxy service, false otherwise.
+ */
+function isSecureProxyService(url: string): boolean {
+  return /\/(sharing|usrsvcs)\/(appservices|servers)\//i.test(url);
+}
+
+/**
+ * Normalize an ArcGIS Online organization domain in a URL.
+ * @param url - The URL to normalize.
+ * @returns The normalized URL.
+ */
+function normalizeArcGISOnlineOrgDomain(url: string): string {
+  const productionRegex = /^https?:\/\/(?:cdn|[a-z\d-]+\.maps)\.arcgis\.com/i;
+  const devRegex = /^https?:\/\/(?:cdndev|[a-z\d-]+\.mapsdevext)\.arcgis\.com/i;
+  const qaRegex = /^https?:\/\/(?:cdnqa|[a-z\d-]+\.mapsqa)\.arcgis\.com/i;
+
+  if (productionRegex.test(url)) {
+    return url.replace(productionRegex, 'https://www.arcgis.com');
+  } else if (devRegex.test(url)) {
+    return url.replace(devRegex, 'https://devext.arcgis.com');
+  } else if (qaRegex.test(url)) {
+    return url.replace(qaRegex, 'https://qaext.arcgis.com');
+  }
+  return url;
+}
 
 // URL 解析类
 class UrlParser {
@@ -73,6 +181,7 @@ let appBaseUrl = getAppBaseUrlFromAppUrl();
 // 从应用 URL 获取应用基础 URL
 function getAppBaseUrlFromAppUrl(): string {
   const path = currentAppUrl.path;
+  //@ts-ignore
   const basePath = path?.slice(0, path.lastIndexOf('/') + 1) || '';
   return `${currentAppUrl.scheme}://${currentAppUrl.host}${currentAppUrl.port ? `:${currentAppUrl.port}` : ''}`;
 }
@@ -204,7 +313,7 @@ function objectToQueryString(
 }
 
 // 获取代理 URL
-function getProxyUrl(useHttps: boolean = false): {
+function getProxyUrl(useHttps: boolean | string = false): {
   path: string | null;
   query: { [key: string]: string | string[] } | null;
 } {
@@ -353,7 +462,7 @@ function hasSameCanonicalPortal(url1: string, url2: string): boolean {
   const portal1 = parseKnownArcGISOnlineDomain(parsedUrl1);
   const portal2 = parseKnownArcGISOnlineDomain(parsedUrl2);
 
-  return portal1 && portal2 && portal1.portalHostname === portal2.portalHostname;
+  return !!(portal1 && portal2 && portal1.portalHostname === portal2.portalHostname);
 }
 
 // 判断两个 URL 是否具有相同的门户
@@ -963,4 +1072,6 @@ export {
   convertToHttps as toHTTPS,
   trustedServersUrlCache,
   parseUrlToPathAndQuery as urlToObject,
+  isSecureProxyService,
+  normalizeArcGISOnlineOrgDomain,
 };
