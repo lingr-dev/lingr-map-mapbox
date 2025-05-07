@@ -1,9 +1,7 @@
-/* eslint-disable */
-
 export const config = {
-  request: {
-    applicationUrl: '',
+  applicationUrl: '',
 
+  request: {
     proxyUrl: null,
     proxyRules: [],
 

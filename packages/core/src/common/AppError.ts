@@ -2,6 +2,7 @@
 
 import { clone } from '../lang/object.js';
 import { AppMessage } from '../common/Message.js';
+// import { nsLogger } from './logger.js'
 
 export class AppError extends AppMessage {
   static fromJSON(json: { name: string; message: string; details: any }): AppError {
@@ -14,13 +15,15 @@ export class AppError extends AppMessage {
 
   toJSON(): { name: string; message: string; details: any } {
     //  const logger = Logger.getLogger("esri.core.Error");
+    // const logger = nsLogger.create("lingr.core.AppError");
+
     if (this.details !== null && this.details !== undefined) {
       try {
         return {
           name: this.name,
           message: this.message,
           details: JSON.parse(
-            JSON.stringify(this.details, (key, value) => {
+            JSON.stringify(this.details, (_key, value) => {
               if (value && typeof value === 'object' && typeof value.toJSON === 'function') {
                 return value;
               }

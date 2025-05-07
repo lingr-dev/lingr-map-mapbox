@@ -9,7 +9,7 @@ import { getDeepValue } from '../lang/object.js';
  * @returns 替换后的字符串
  */
 function replacePlaceholders(template: string, context: Record<string, any>): string {
-  return template.replaceAll(/\$\{([^\s:}]*)(?::([^\s:}]+))?\}/g, (match, key: string) => {
+  return template.replaceAll(/\$\{([^\s:}]*)(?::([^\s:}]+))?\}/g, (_match, key: string) => {
     if (key === '') return '$';
     const value = getDeepValue(key, context);
     return (value ?? '').toString();
