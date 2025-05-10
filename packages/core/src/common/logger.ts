@@ -57,7 +57,7 @@ const levels = {
   },
 };
 
-class NamespaceLogger {
+export class NamespaceLogger {
   handlers: { [key: string]: any };
   namespace: string;
   instance: debug.Debugger;
@@ -155,6 +155,8 @@ class NamespaceLogger {
 }
 
 export const nsLogger = {
+  _loggers: new Map<string, NamespaceLogger>(),
+
   init(namespaceList: string[]): void {
     const namespaces = namespaceList.join(',');
 
@@ -162,6 +164,10 @@ export const nsLogger = {
   },
 
   create(namespace: string): NamespaceLogger {
+    if (this._loggers.has(namespace)) {
+      return this._loggers.get(namespace) as NamespaceLogger;
+    }
+
     const instance = new NamespaceLogger(namespace);
 
     return instance;

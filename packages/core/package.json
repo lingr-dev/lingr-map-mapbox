@@ -20,7 +20,7 @@
   "types": "./index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && pnpm run dts",
+    "build": "vite build",
     "preview": "vite preview",
     "checker": "tsc --noEmit --watch",
     "dts": "tsc --declaration --emitDeclarationOnly --declarationDir dist/"
@@ -32,6 +32,7 @@
     "nanoid": "^5.0.7"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "7.52.7",
     "@types/debug": "^4.1.12",
     "@types/lodash-es": "^4.17.12",
     "vite": "catalog:",

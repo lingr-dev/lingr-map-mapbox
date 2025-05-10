@@ -128,7 +128,7 @@ function normalizeArcGISOnlineOrgDomain(url: string): string {
 }
 
 // URL 解析类
-class UrlParser {
+export class UrlParser {
   uri: string;
   scheme: string | null;
   authority: string | null;
